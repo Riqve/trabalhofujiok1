@@ -1,7 +1,10 @@
 package br.com.fujideia.iesp.tecback.controller;
 
+
+import br.com.fujideia.iesp.tecback.model.Esporte;
 import br.com.fujideia.iesp.tecback.model.Filme;
-import br.com.fujideia.iesp.tecback.service.FilmeService;
+import br.com.fujideia.iesp.tecback.service.EsporteService;
+import br.com.fujideia.iesp.tecback.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,31 +12,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/filme")
-public class FilmeController {
+@RequestMapping ("/esporte")
+public class EsporteController {
 
     @Autowired
-    private FilmeService service;
+    private EsporteService service;
 
     @PostMapping
-    public ResponseEntity<Filme> salvar(@RequestBody Filme filme){
-        filme = service.salvar(filme);
-        return ResponseEntity.ok(filme);
+    public ResponseEntity<Esporte> salvar(@RequestBody Esporte esporte){
+        esporte = service.salvar(esporte);
+        return ResponseEntity.ok(esporte);
     }
 
     @PutMapping
-    public ResponseEntity<Filme> alterar(@RequestBody Filme filme){
-        filme = service.alterar(filme);
-        return ResponseEntity.ok(filme);
+    public ResponseEntity<Esporte> alterar(@RequestBody Esporte esporte){
+        esporte = service.alterar(esporte);
+        return ResponseEntity.ok(esporte);
     }
 
     @GetMapping
-    public ResponseEntity<List<Filme>> listar(){
+    public ResponseEntity<List<Esporte>> listar(){
         return ResponseEntity.ok(service.listar());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Filme> consultar(@PathVariable("id") Integer id){
+    public ResponseEntity<Esporte> consultar(@PathVariable("id") Integer id){
         return ResponseEntity.ok(service.consultarPorId(id));
     }
 
@@ -45,6 +48,5 @@ public class FilmeController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
 }
